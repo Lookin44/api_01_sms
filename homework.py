@@ -12,8 +12,6 @@ sid_user = os.getenv('SID_USER')
 id_app = os.getenv('ID_APP')
 account_sid = os.getenv('TWILIO_ACCOUNT_SID')
 auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-twilio_phone = os.getenv('TWILIO_PHONE')
-my_phone = os.getenv('MY_PHONE')
 
 API_STATUS = 'https://api.vk.com/method/users.get'
 
@@ -27,7 +25,8 @@ def get_status(user_id):
     }
     user_status = requests.post(
         API_STATUS,
-        params=params)
+        params=params
+    )
     return user_status.json()['response'][0]['online']
 
 
@@ -35,8 +34,8 @@ def sms_sender(sms_text):
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         body=sms_text,
-        from_=twilio_phone,
-        to=my_phone
+        from_='+19388882750',
+        to='+79990387162'
     )
     return message.sid
 
